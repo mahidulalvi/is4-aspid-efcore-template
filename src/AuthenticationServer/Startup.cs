@@ -85,6 +85,8 @@ namespace AuthenticationServer
                     options.ClientId = "copy client ID from Google here";
                     options.ClientSecret = "copy client secret from Google here";
                 });
+
+            services.ConfigureSameSiteCookiesCompatibility();
         }
 
         public void Configure(IApplicationBuilder app)
@@ -102,6 +104,9 @@ namespace AuthenticationServer
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCookiePolicy();
+
             app.UseIdentityServer();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
