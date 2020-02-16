@@ -57,6 +57,27 @@ namespace AuthenticationServer
                     AllowedScopes = { "openid", "profile", "api1" }
                 },
 
+                // Postman client
+                new Client
+                {
+                    ClientId = "postman",
+                    ClientName = "Postman Client",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    AllowAccessTokensViaBrowser = true,
+                    ClientSecrets = { new Secret("1C89C192F69A-511536EF-2F07-4058-80CA".Sha256()) },
+                    RequireConsent = true,
+                    EnableLocalLogin = true,
+
+                    RedirectUris =
+                    {
+                        "https://www.getpostman.com/oauth2/callback"
+                    },
+
+                    PostLogoutRedirectUris = { "https://www.getpostman.com" },
+                    AllowedCorsOrigins = { "https://www.getpostman.com" },
+                    AllowedScopes = { "openid", "profile", "api1" },
+                },
+
                 // SPA client using code flow + pkce
                 new Client
                 {
